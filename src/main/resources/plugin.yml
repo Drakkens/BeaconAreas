@@ -1,0 +1,4 @@
+name: BeaconAreas
+version: '1.0-SNAPSHOT'
+main: com.drakkens.beaconAreas.BeaconAreas
+api-version: '1.20'
