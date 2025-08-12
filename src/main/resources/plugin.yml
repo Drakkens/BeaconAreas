@@ -2,3 +2,16 @@ name: BeaconAreas
 version: '1.0-SNAPSHOT'
 main: com.drakkens.beaconAreas.BeaconAreas
 api-version: '1.20'
+commands:
+  setup:
+    description: Sets up the beacon areas.
+    usage: /setup blockPosition (of a Beacon Block)
+    aliases: [bset]
+    permission: beaconareas.setup
+    permission-message: §cYou do not have permission to run this command.
+
+
+permissions:
+  beaconareas.setup:
+    description: Allows the user to setup the beacon areas.
+    default: op

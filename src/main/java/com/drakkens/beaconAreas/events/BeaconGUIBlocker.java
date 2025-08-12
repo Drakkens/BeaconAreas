@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 
+import static com.drakkens.beaconAreas.BeaconAreas.beaconLocations;
+
 public class BeaconGUIBlocker implements Listener {
     
     @EventHandler
@@ -18,10 +20,10 @@ public class BeaconGUIBlocker implements Listener {
         if (targetedBlock.getType() != Material.BEACON) return;
 
         Location blockPos = targetedBlock.getLocation();
-//        if (blockPos in registeredBeacons) {
-//          event.setCancelled(true);
-//          player.sendMessage("This beacon is restricted");
-//        }
+        if (beaconLocations.contains(blockPos)) {
+            event.setCancelled(true);
+            player.sendMessage("This beacon is restricted");
+        }
     }
 
 }
