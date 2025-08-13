@@ -1,29 +1,34 @@
-package com.drakkens.beaconAreas.commands;
+package com.drakkens.beaconAreas.commands.beaconCreation;
 
+import com.drakkens.beaconAreas.commands.SubCommand;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.drakkens.beaconAreas.BeaconAreas.beaconLocations;
 
-public class CommandSetup implements CommandExecutor, TabCompleter {
+public class NewBeaconAreaCommand extends SubCommand {
+    public NewBeaconAreaCommand() {
+        super("new",
+                "Creates a new beacon area",
+                "/beaconarea new <blockPosition> <beaconName>",
+                "beaconareas.new");
+    }
+
     //    https://www.spigotmc.org/wiki/create-a-simple-command/
 //    https://stackoverflow.com/questions/68240438/set-command-arguments-type-in-minecraft-plugin-java
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, @NonNull String[] args) {
         if (!(sender instanceof Player player)) return false;
 
-        if (args.length < 3)  {
-            sender.sendMessage("/setup <blockPosition>");
+        if (args.length < 4) {
+            sender.sendMessage(this.usage);
             return false;
         }
 
@@ -60,6 +65,10 @@ public class CommandSetup implements CommandExecutor, TabCompleter {
                 String coords = loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ();
                 return List.of(coords);
             }
+        }
+
+        if (args.length == 2) {
+            return List.of("beaconName");
 
         }
 
